@@ -53,11 +53,11 @@ export function WaitlistSection() {
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            Get World Cup access alerts
+            Waitlist
           </h2>
           <p className="mt-3 text-muted-foreground">
-            National alerts for hospitality and host cities. NYC members get
-            local watch parties, dinners, and priority access intel.
+            Updates on hospitality and host cities. NYC members hear about local
+            watch parties, dinners, and private events.
           </p>
 
           {submitted ? (

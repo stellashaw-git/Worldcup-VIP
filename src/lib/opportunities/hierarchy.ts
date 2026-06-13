@@ -30,7 +30,7 @@ export const HOST_CITY_CATALOG: HostCityCatalogEntry[] = [
     slug: "new-york-nj",
     label: "New York / NJ",
     headline: "New York Metro",
-    hook: "World Cup Final — the most sought-after seats on earth",
+    hook: "Final host city — MetLife and the wider metro",
     matchCities: [
       "New York / NJ",
       "East Rutherford",
@@ -44,7 +44,7 @@ export const HOST_CITY_CATALOG: HostCityCatalogEntry[] = [
     slug: "miami",
     label: "Miami",
     headline: "Miami",
-    hook: "South Florida heat — premium access at Hard Rock Stadium",
+    hook: "Hard Rock Stadium and South Florida's World Cup scene",
     matchCities: ["Miami"],
     featured: true,
   },
@@ -66,7 +66,7 @@ export const HOST_CITY_CATALOG: HostCityCatalogEntry[] = [
     slug: "houston",
     label: "Houston",
     headline: "Houston",
-    hook: "NRG Stadium hospitality and premium inventory",
+    hook: "NRG Stadium and Houston's host-city offerings",
     matchCities: ["Houston"],
   },
   {
@@ -80,7 +80,7 @@ export const HOST_CITY_CATALOG: HostCityCatalogEntry[] = [
     slug: "philadelphia",
     label: "Philadelphia",
     headline: "Philadelphia",
-    hook: "Lincoln Financial Field premium pathways",
+    hook: "Lincoln Financial Field and Philadelphia's match calendar",
     matchCities: ["Philadelphia"],
   },
   {

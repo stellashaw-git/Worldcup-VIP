@@ -76,7 +76,7 @@ export function VenuePageContent({
         <section>
           <h2 className="mb-2 text-xl font-semibold">Hospitality packages</h2>
           <p className="mb-6 text-sm text-muted-foreground">
-            Limited inventory — request access before packages sell out.
+            Hospitality packages and premium seating at this stadium.
           </p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((record) => (

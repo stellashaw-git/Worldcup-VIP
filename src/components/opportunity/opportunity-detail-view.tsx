@@ -96,8 +96,8 @@ export function OpportunityDetailView({
             · {formatField(record.accessType)}
           </p>
           <p className="text-sm text-muted-foreground">
-            Compare official hospitality options across publishers — request
-            access when inventory is limited.
+            Reference listings from public sources — request access or visit the
+            official publisher.
           </p>
           <OpportunityEngagementActions record={record} size="default" />
           {record.sourceUrl && (

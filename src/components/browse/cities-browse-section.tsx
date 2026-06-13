@@ -19,11 +19,10 @@ export function CitiesBrowseSection() {
     <section id="cities" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       <div className="mb-8 flex flex-col gap-2">
         <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-          Browse by host city
+          Host cities
         </h2>
         <p className="text-muted-foreground">
-          Pick your city → stadium → hospitality package. Inventory is limited
-          and moves fast.
+          Stadiums, hospitality, and what&apos;s happening in each US host city.
         </p>
       </div>
 
@@ -55,7 +54,7 @@ export function CitiesBrowseSection() {
               </div>
               <div className="flex items-center justify-between gap-2 pt-1">
                 <span className="text-xs text-muted-foreground">
-                  {listingCount} pathways listed
+                  {listingCount} listings
                 </span>
                 <span className="inline-flex items-center gap-1 text-sm text-primary">
                   Explore

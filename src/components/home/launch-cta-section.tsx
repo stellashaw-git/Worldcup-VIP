@@ -14,10 +14,9 @@ export function LaunchCtaSection() {
           >
             <MapPin className="size-5 text-primary" aria-hidden />
             <div>
-              <p className="font-medium">Pick your host city</p>
+              <p className="font-medium">Host cities</p>
               <p className="mt-1 text-sm text-muted-foreground">
-                NYC Final, Miami, LA, Dallas — then choose your stadium and
-                package.
+                Stadiums, hospitality, watch parties, and local events — by city.
               </p>
             </div>
             <span className="inline-flex items-center gap-1 text-sm text-primary">
@@ -32,9 +31,10 @@ export function LaunchCtaSection() {
           >
             <Mail className="size-5 text-primary" aria-hidden />
             <div>
-              <p className="font-medium">Get early access</p>
+              <p className="font-medium">Waitlist</p>
               <p className="mt-1 text-sm text-muted-foreground">
-                Be first to know when suites and lounges open in your city.
+                Occasional updates on hospitality, events, and what&apos;s new in
+                your city.
               </p>
             </div>
             <span className="inline-flex items-center gap-1 text-sm text-primary">
