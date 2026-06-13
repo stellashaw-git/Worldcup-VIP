@@ -21,9 +21,6 @@ function PulseGroup({
             className="rounded-full border border-border/60 bg-background/40 px-3 py-1 text-xs font-medium"
           >
             {item.label}
-            {item.score > 0 && (
-              <span className="ml-1 text-muted-foreground">({item.score})</span>
-            )}
           </span>
         ))}
       </div>
@@ -57,8 +54,8 @@ export function WorldCupPulseSection() {
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
-          <PulseGroup title="Most Followed Teams" items={pulse.teams} />
-          <PulseGroup title="Most Followed Matches" items={pulse.matches} />
+          <PulseGroup title="Teams in Focus" items={pulse.teams} />
+          <PulseGroup title="Matches in Focus" items={pulse.matches} />
           <PulseGroup title="Most Viewed Host Cities" items={pulse.cities} />
           <PulseGroup
             title="Most Viewed Opportunity Categories"

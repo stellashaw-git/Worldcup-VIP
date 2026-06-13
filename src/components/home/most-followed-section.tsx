@@ -16,7 +16,7 @@ export function MostFollowedSection() {
     <section className="border-b border-border/60 bg-muted/20">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-          Most Followed Opportunities
+          Featured Opportunities
         </h2>
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
           {items.map((item) => (
