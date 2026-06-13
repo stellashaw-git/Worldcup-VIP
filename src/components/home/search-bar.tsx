@@ -2,27 +2,25 @@
 
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { MATCH_STAGES, type MatchStage } from "@/lib/opportunities/types";
+import {
+  DIRECTORY_FILTERS,
+  type DirectoryFilterId,
+} from "@/lib/opportunities/directory-filters";
 import { cn } from "@/lib/utils";
 
 type SearchBarProps = {
   query: string;
   onQueryChange: (query: string) => void;
-  selectedStage: MatchStage | "All";
-  onStageChange: (stage: MatchStage | "All") => void;
+  selectedFilter: DirectoryFilterId;
+  onFilterChange: (filter: DirectoryFilterId) => void;
 };
 
 export function SearchBar({
   query,
   onQueryChange,
-  selectedStage,
-  onStageChange,
+  selectedFilter,
+  onFilterChange,
 }: SearchBarProps) {
-  const stages: Array<MatchStage | "All"> = [
-    "All",
-    ...MATCH_STAGES.filter((stage) => stage !== "Unknown"),
-  ];
-
   return (
     <section className="border-b border-border/60 bg-muted/20">
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
@@ -34,29 +32,34 @@ export function SearchBar({
             />
             <Input
               type="search"
-              placeholder="Search match, venue, city, source, or access type..."
+              placeholder="Search venue, city, source, category, or access type..."
               value={query}
               onChange={(e) => onQueryChange(e.target.value)}
               className="h-11 bg-background/60 pl-9"
               aria-label="Search opportunities"
             />
           </div>
-          <div className="flex flex-wrap gap-2">
-            {stages.map((stage) => (
-              <button
-                key={stage}
-                type="button"
-                onClick={() => onStageChange(stage)}
-                className={cn(
-                  "rounded-full border px-3 py-1 text-xs font-medium transition-colors",
-                  selectedStage === stage
-                    ? "border-primary/40 bg-primary/15 text-primary"
-                    : "border-border bg-background/40 text-muted-foreground hover:border-border hover:text-foreground"
-                )}
-              >
-                {stage}
-              </button>
-            ))}
+          <div className="flex flex-col gap-2">
+            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              Browse by type
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {DIRECTORY_FILTERS.map((filter) => (
+                <button
+                  key={filter.id}
+                  type="button"
+                  onClick={() => onFilterChange(filter.id)}
+                  className={cn(
+                    "rounded-full border px-3 py-1 text-xs font-medium transition-colors",
+                    selectedFilter === filter.id
+                      ? "border-primary/40 bg-primary/15 text-primary"
+                      : "border-border bg-background/40 text-muted-foreground hover:border-border hover:text-foreground"
+                  )}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>

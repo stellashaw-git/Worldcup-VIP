@@ -6,7 +6,12 @@ import { useHome } from "@/components/home/home-provider";
 import { OpportunityCard } from "@/components/home/opportunity-card";
 import { SearchBar } from "@/components/home/search-bar";
 import { Button } from "@/components/ui/button";
-import type { MatchStage } from "@/lib/opportunities/types";
+import {
+  buildRecordSearchText,
+  DIRECTORY_FILTERS,
+  recordMatchesDirectoryFilter,
+  type DirectoryFilterId,
+} from "@/lib/opportunities/directory-filters";
 
 export function OpportunitiesSection() {
   const {
@@ -18,46 +23,39 @@ export function OpportunitiesSection() {
   } = useHome();
 
   const [query, setQuery] = useState("");
-  const [selectedStage, setSelectedStage] = useState<MatchStage | "All">("All");
+  const [selectedFilter, setSelectedFilter] =
+    useState<DirectoryFilterId>("all");
 
   const filteredRecords = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
     return records.filter((record) => {
-      const matchesStage =
-        selectedStage === "All" || record.matchStage === selectedStage;
+      const matchesFilter = recordMatchesDirectoryFilter(
+        record,
+        selectedFilter
+      );
 
       if (!normalizedQuery) {
-        return matchesStage;
+        return matchesFilter;
       }
 
-      const searchableText = [
-        record.matchName,
-        record.matchStage,
-        record.city,
-        record.venue,
-        record.eventDate,
-        record.accessType,
-        record.hospitalityCategory,
-        record.sourceName,
-        record.summary,
-        record.capacity,
-      ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
-
-      return matchesStage && searchableText.includes(normalizedQuery);
+      return (
+        matchesFilter &&
+        buildRecordSearchText(record).includes(normalizedQuery)
+      );
     });
-  }, [records, query, selectedStage]);
+  }, [records, query, selectedFilter]);
+
+  const activeFilterLabel =
+    DIRECTORY_FILTERS.find((f) => f.id === selectedFilter)?.label ?? "All";
 
   return (
     <>
       <SearchBar
         query={query}
         onQueryChange={setQuery}
-        selectedStage={selectedStage}
-        onStageChange={setSelectedStage}
+        selectedFilter={selectedFilter}
+        onFilterChange={setSelectedFilter}
       />
       <section id="opportunities" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -66,9 +64,8 @@ export function OpportunitiesSection() {
               Access Database
             </h2>
             <p className="text-muted-foreground">
-              Structured World Cup 2026 hospitality intelligence from public
-              sources — compare match, venue, pricing, and source before
-              inquiring.
+              Curated official hubs, host-city venues, and travel paths — filter
+              by type above.
             </p>
           </div>
           <Button
@@ -107,11 +104,16 @@ export function OpportunitiesSection() {
         ) : (
           <div className="rounded-xl border border-dashed border-border bg-muted/20 px-6 py-12 text-center">
             <p className="font-medium">
-              {emptyMessage ??
-                (records.length === 0
-                  ? "Click Refresh Public Results to build the access database."
-                  : "No records match your search.")}
+              {records.length === 0
+                ? (emptyMessage ??
+                    "Click Refresh live data or wait for the starter directory.")
+                : `No listings match “${activeFilterLabel}”.`}
             </p>
+            {records.length > 0 && selectedFilter !== "all" && (
+              <p className="mt-2 text-sm text-muted-foreground">
+                Try <strong>All</strong> or another category filter.
+              </p>
+            )}
           </div>
         )}
       </section>
