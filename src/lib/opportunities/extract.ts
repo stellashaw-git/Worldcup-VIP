@@ -16,6 +16,7 @@ import {
   computeConfidenceScore,
   sanitizePageTitle,
 } from "@/lib/opportunities/quality";
+import { applyOfficialInference } from "@/lib/opportunities/infer-official";
 import { classifySource } from "@/lib/opportunities/sources";
 import type {
   AccessRecord,
@@ -282,7 +283,7 @@ export function extractAccessRecord(
   const rawSummary = result.content.trim();
   const cleanedSummary = cleanScrapedSummary(rawSummary, matchName);
 
-  const record: AccessRecord = {
+  const record: AccessRecord = applyOfficialInference({
     id,
     slug,
     groupKey,
@@ -304,7 +305,7 @@ export function extractAccessRecord(
     lastUpdated,
     summary: cleanedSummary,
     confidenceScore,
-  };
+  });
 
   return { record, rawSummary };
 }

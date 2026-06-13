@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { CalendarDays, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +19,10 @@ import {
   formatLastUpdated,
   formatPriceRange,
 } from "@/lib/opportunities/format";
+import {
+  formatHospitalityCategory,
+  getStageBadgeLabel,
+} from "@/lib/opportunities/infer-official";
 import type { AccessRecord } from "@/lib/opportunities/types";
 
 export function OpportunityCard({ record }: { record: AccessRecord }) {
@@ -24,6 +30,8 @@ export function OpportunityCard({ record }: { record: AccessRecord }) {
     record.venue !== "Unknown"
       ? `${record.venue}\n${record.city}`
       : formatField(record.city);
+
+  const stageLabel = getStageBadgeLabel(record);
 
   return (
     <Card className="bg-card/60 transition-colors hover:bg-card/80">
@@ -54,6 +62,12 @@ export function OpportunityCard({ record }: { record: AccessRecord }) {
       </CardHeader>
       <CardContent className="grid gap-2 text-sm">
         <div className="flex justify-between gap-4">
+          <span className="text-muted-foreground">Category</span>
+          <span className="text-right font-medium">
+            {formatHospitalityCategory(record.hospitalityCategory)}
+          </span>
+        </div>
+        <div className="flex justify-between gap-4">
           <span className="text-muted-foreground">Access</span>
           <span className="text-right font-medium">
             {formatField(record.accessType)}
@@ -82,7 +96,7 @@ export function OpportunityCard({ record }: { record: AccessRecord }) {
         </p>
       </CardContent>
       <CardFooter className="flex-col items-stretch gap-2 border-t-0 bg-transparent sm:flex-row sm:items-center">
-        <Badge variant="outline">{record.matchStage}</Badge>
+        {stageLabel && <Badge variant="outline">{stageLabel}</Badge>}
         <div className="flex flex-wrap gap-2 sm:ml-auto">
           <OpportunityEngagementActions record={record} />
           <Link

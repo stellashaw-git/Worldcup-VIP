@@ -91,7 +91,7 @@ export function OpportunityDetailView({
           </div>
           <p className="text-lg text-muted-foreground">
             {record.matchStageDetail
-              ? `${record.matchStageDetail} (${record.matchStage})`
+              ? record.matchStageDetail
               : formatField(record.matchStage)}{" "}
             · {formatField(record.accessType)}
           </p>

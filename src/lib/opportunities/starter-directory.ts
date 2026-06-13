@@ -1,9 +1,11 @@
 import { createHash } from "crypto";
+import { applyOfficialInference } from "@/lib/opportunities/infer-official";
 import type { AccessRecord } from "@/lib/opportunities/types";
 
 type StarterEntry = {
   matchName: string;
   matchStage: AccessRecord["matchStage"];
+  matchStageDetail?: string;
   city: string;
   venue: string;
   eventDate: string;
@@ -37,12 +39,13 @@ function entryToRecord(entry: StarterEntry, lastUpdated: string): AccessRecord {
   const slug = `${slugify(entry.matchName)}-${id}`;
   const groupKey = `${entry.matchName}|${entry.venue}|${entry.eventDate}`;
 
-  return {
+  return applyOfficialInference({
     id,
     slug,
     groupKey,
     matchName: entry.matchName,
     matchStage: entry.matchStage,
+    matchStageDetail: entry.matchStageDetail,
     city: entry.city,
     venue: entry.venue,
     eventDate: entry.eventDate,
@@ -60,13 +63,14 @@ function entryToRecord(entry: StarterEntry, lastUpdated: string): AccessRecord {
     summary: entry.summary,
     confidenceScore: 90,
     actionLabel: entry.actionLabel,
-  };
+  });
 }
 
 const STARTER_ENTRIES: StarterEntry[] = [
   {
     matchName: "FIFA Official Hospitality Packages",
-    matchStage: "Unknown",
+    matchStage: "Group Stage",
+    matchStageDetail: "Official FIFA Hub",
     city: "Unknown",
     venue: "Unknown",
     eventDate: "June–July 2026",
@@ -82,7 +86,8 @@ const STARTER_ENTRIES: StarterEntry[] = [
   },
   {
     matchName: "On Location Official Packages",
-    matchStage: "Unknown",
+    matchStage: "Group Stage",
+    matchStageDetail: "Official Travel Partner",
     city: "Unknown",
     venue: "Unknown",
     eventDate: "June–July 2026",
@@ -99,6 +104,7 @@ const STARTER_ENTRIES: StarterEntry[] = [
   {
     matchName: "MetLife Stadium Hospitality",
     matchStage: "Final",
+    matchStageDetail: "World Cup Final Venue",
     city: "East Rutherford, NJ",
     venue: "MetLife Stadium",
     eventDate: "July 2026",
@@ -114,7 +120,8 @@ const STARTER_ENTRIES: StarterEntry[] = [
   },
   {
     matchName: "SoFi Stadium Hospitality",
-    matchStage: "Unknown",
+    matchStage: "Group Stage",
+    matchStageDetail: "Host City Venue",
     city: "Los Angeles",
     venue: "SoFi Stadium",
     eventDate: "June–July 2026",
@@ -129,7 +136,8 @@ const STARTER_ENTRIES: StarterEntry[] = [
   },
   {
     matchName: "Hard Rock Stadium Hospitality",
-    matchStage: "Unknown",
+    matchStage: "Group Stage",
+    matchStageDetail: "Host City Venue",
     city: "Miami",
     venue: "Hard Rock Stadium",
     eventDate: "June–July 2026",
@@ -144,7 +152,8 @@ const STARTER_ENTRIES: StarterEntry[] = [
   },
   {
     matchName: "AT&T Stadium Hospitality",
-    matchStage: "Unknown",
+    matchStage: "Group Stage",
+    matchStageDetail: "Host City Venue",
     city: "Dallas",
     venue: "AT&T Stadium",
     eventDate: "June–July 2026",
@@ -159,7 +168,8 @@ const STARTER_ENTRIES: StarterEntry[] = [
   },
   {
     matchName: "NRG Stadium Hospitality",
-    matchStage: "Unknown",
+    matchStage: "Group Stage",
+    matchStageDetail: "Host City Venue",
     city: "Houston",
     venue: "NRG Stadium",
     eventDate: "June–July 2026",
@@ -174,7 +184,8 @@ const STARTER_ENTRIES: StarterEntry[] = [
   },
   {
     matchName: "Gillette Stadium Hospitality",
-    matchStage: "Unknown",
+    matchStage: "Group Stage",
+    matchStageDetail: "Host City Venue",
     city: "Boston",
     venue: "Gillette Stadium",
     eventDate: "June–July 2026",
@@ -189,7 +200,8 @@ const STARTER_ENTRIES: StarterEntry[] = [
   },
   {
     matchName: "Lincoln Financial Field Hospitality",
-    matchStage: "Unknown",
+    matchStage: "Group Stage",
+    matchStageDetail: "Host City Venue",
     city: "Philadelphia",
     venue: "Lincoln Financial Field",
     eventDate: "June–July 2026",
@@ -204,7 +216,8 @@ const STARTER_ENTRIES: StarterEntry[] = [
   },
   {
     matchName: "Levi's Stadium Hospitality",
-    matchStage: "Unknown",
+    matchStage: "Group Stage",
+    matchStageDetail: "Host City Venue",
     city: "San Francisco",
     venue: "Levi's Stadium",
     eventDate: "June–July 2026",
@@ -219,7 +232,8 @@ const STARTER_ENTRIES: StarterEntry[] = [
   },
   {
     matchName: "Lumen Field Hospitality",
-    matchStage: "Unknown",
+    matchStage: "Group Stage",
+    matchStageDetail: "Host City Venue",
     city: "Seattle",
     venue: "Lumen Field",
     eventDate: "June–July 2026",
@@ -234,7 +248,8 @@ const STARTER_ENTRIES: StarterEntry[] = [
   },
   {
     matchName: "NYC Metro Hotels — World Cup Stays",
-    matchStage: "Unknown",
+    matchStage: "Group Stage",
+    matchStageDetail: "Hotel & Stays",
     city: "New York / NJ",
     venue: "Unknown",
     eventDate: "June–July 2026",
@@ -263,7 +278,7 @@ export function mergeStarterRecords(records: AccessRecord[]): AccessRecord[] {
     byUrl.set(record.sourceUrl, record);
   }
   for (const record of records) {
-    byUrl.set(record.sourceUrl, record);
+    byUrl.set(record.sourceUrl, applyOfficialInference(record));
   }
 
   return Array.from(byUrl.values());

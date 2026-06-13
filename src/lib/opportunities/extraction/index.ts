@@ -155,6 +155,13 @@ export function classifyMatchStageFromText(text: string): MatchStage {
   if (t.includes("round of 32")) return "Round of 32";
   if (t.includes("group stage")) return "Group Stage";
   if (
+    t.includes("world cup 2026") ||
+    t.includes("fifa world cup") ||
+    t.includes("world cup hospitality")
+  ) {
+    return "Group Stage";
+  }
+  if (
     /\bworld cup final\b/i.test(text) ||
     (/\bfinal\b/i.test(text) && !t.includes("semi") && !t.includes("quarter"))
   ) {

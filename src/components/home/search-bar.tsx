@@ -18,7 +18,10 @@ export function SearchBar({
   selectedStage,
   onStageChange,
 }: SearchBarProps) {
-  const stages: Array<MatchStage | "All"> = ["All", ...MATCH_STAGES];
+  const stages: Array<MatchStage | "All"> = [
+    "All",
+    ...MATCH_STAGES.filter((stage) => stage !== "Unknown"),
+  ];
 
   return (
     <section className="border-b border-border/60 bg-muted/20">

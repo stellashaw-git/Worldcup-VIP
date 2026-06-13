@@ -1,5 +1,6 @@
 import { createHash } from "crypto";
 import { buildGroupKey } from "@/lib/opportunities/extract";
+import { applyOfficialInference } from "@/lib/opportunities/infer-official";
 import type { AccessRecord, MatchStage } from "@/lib/opportunities/types";
 import { isOfficialHighTrustSource } from "@/lib/opportunities/official-quality";
 import type { OfficialListing } from "@/lib/official-sources/types";
@@ -65,7 +66,7 @@ export function officialListingToAccessRecord(
 
   const confidenceScore = isOfficialHighTrustSource(listing.sourceType) ? 95 : 85;
 
-  return {
+  return applyOfficialInference({
     id,
     slug,
     groupKey,
@@ -93,7 +94,7 @@ export function officialListingToAccessRecord(
     lastUpdated,
     summary: buildSummary(listing),
     confidenceScore,
-  };
+  });
 }
 
 export function dedupeOfficialRecords(records: AccessRecord[]): AccessRecord[] {
