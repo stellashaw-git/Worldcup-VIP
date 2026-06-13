@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BLACKBOOK | World Cup 2026 Access",
+  title: "BLACKBOOK | World Cup Social Guide",
   description:
     "Curated hospitality, events, and experiences for World Cup 2026 across US host cities.",
 };

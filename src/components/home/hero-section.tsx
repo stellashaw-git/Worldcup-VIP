@@ -8,12 +8,12 @@ export function HeroSection() {
       <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
         <div className="flex max-w-2xl flex-col gap-8">
           <p className="text-xs font-medium uppercase tracking-[0.35em] text-primary">
-            BLACKBOOK · WORLD CUP 2026
+            BLACKBOOK
           </p>
 
           <div className="flex flex-col gap-5">
             <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-              World Cup 2026
+              World Cup Social Guide
             </h1>
             <p className="text-lg text-foreground/90 sm:text-xl leading-relaxed">
               The best places to watch, gather, and experience World Cup 2026.
