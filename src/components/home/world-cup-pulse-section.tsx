@@ -50,7 +50,7 @@ export function WorldCupPulseSection() {
           </h2>
           <p className="text-sm text-muted-foreground">
             Market attention across teams, matches, host cities, and access
-            categories — intelligence only, not predictions or betting.
+            categories — not predictions or betting.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">

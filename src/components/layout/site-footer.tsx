@@ -8,8 +8,7 @@ export function SiteFooter() {
           BLACKBOOK
         </p>
         <p>
-          World Cup 2026 access intelligence · National alerts · NYC social
-          access
+          World Cup 2026 access · National alerts · NYC social access
         </p>
         <div className="flex flex-wrap gap-4 text-xs">
           <Link href="/#opportunities" className="hover:text-primary">
@@ -26,7 +25,7 @@ export function SiteFooter() {
           </Link>
         </div>
         <p className="text-xs leading-relaxed">
-          Independent curated directory. We do not sell tickets, process
+          Independent access directory. We do not sell tickets, process
           transactions, or represent FIFA unless explicitly stated.
         </p>
       </div>

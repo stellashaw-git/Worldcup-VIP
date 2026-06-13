@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "BLACKBOOK | World Cup 2026 Access",
   description:
-    "Exclusive suites, lounges, hospitality, and private events for the 2026 FIFA World Cup.",
+    "Find World Cup 2026 hospitality, host-city venues, and premium experiences across the US. Alerts and access requests — not a ticket store.",
 };
 
 export default function RootLayout({

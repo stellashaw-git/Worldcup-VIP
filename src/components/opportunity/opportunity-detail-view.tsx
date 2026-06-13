@@ -96,8 +96,8 @@ export function OpportunityDetailView({
             · {formatField(record.accessType)}
           </p>
           <p className="text-sm text-muted-foreground">
-            Structured intelligence from public sources. Compare pricing across
-            publishers — BLACKBOOK does not sell tickets or process transactions.
+            Public reference listings. Compare options across publishers —
+            BLACKBOOK does not sell tickets or process transactions.
           </p>
           <OpportunityEngagementActions record={record} size="default" />
           {record.sourceUrl && (
@@ -245,9 +245,10 @@ export function OpportunityDetailView({
         <OpportunityLeadCta record={record} />
 
         <p className="text-xs leading-relaxed text-muted-foreground">
-          BLACKBOOK is an independent World Cup 2026 access database. We help
-          users compare public hospitality intelligence. We do not sell tickets,
-          process transactions, or represent FIFA unless explicitly stated.
+          BLACKBOOK is an independent World Cup 2026 access directory. We help
+          users find official hospitality and premium options. We do not sell
+          tickets, process transactions, or represent FIFA unless explicitly
+          stated.
         </p>
       </div>
     </div>
