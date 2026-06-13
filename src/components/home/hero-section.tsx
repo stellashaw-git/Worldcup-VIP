@@ -11,7 +11,7 @@ export function HeroSection() {
           </p>
           <div className="flex flex-col gap-4">
             <h1 className="max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-              Curated access intelligence for World Cup 2026
+              World Cup 2026 Access
             </h1>
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-lg text-muted-foreground sm:text-xl">
               {ACCESS_TYPES.map((type) => (
@@ -20,9 +20,9 @@ export function HeroSection() {
             </div>
           </div>
           <p className="max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Compare official hospitality paths across US host cities. Request
-            access, get alerts, and discover curated experiences — we don&apos;t
-            sell tickets or process transactions.
+            Official hospitality, host-city venues, and premium experiences
+            across the US. Request access, get alerts, and find where to go — we
+            don&apos;t sell tickets or process transactions.
           </p>
           <p className="text-sm text-muted-foreground">
             Starting in NYC. National audience welcome — pick your city on the
