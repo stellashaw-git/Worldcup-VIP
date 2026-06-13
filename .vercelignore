@@ -1,0 +1,4 @@
+.playwright-browsers
+data
+.env*
+*.log
