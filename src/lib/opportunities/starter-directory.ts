@@ -1,6 +1,6 @@
 import { createHash } from "crypto";
 import { applyOfficialInference } from "@/lib/opportunities/infer-official";
-import type { AccessRecord } from "@/lib/opportunities/types";
+import type { AccessRecord, ListingKind } from "@/lib/opportunities/types";
 
 type StarterEntry = {
   matchName: string;
@@ -11,6 +11,8 @@ type StarterEntry = {
   eventDate: string;
   accessType: AccessRecord["accessType"];
   hospitalityCategory: AccessRecord["hospitalityCategory"];
+  listingKind: ListingKind;
+  productName?: string;
   sourceName: string;
   sourceType: AccessRecord["sourceType"];
   sourceUrl: string;
@@ -51,6 +53,8 @@ function entryToRecord(entry: StarterEntry, lastUpdated: string): AccessRecord {
     eventDate: entry.eventDate,
     accessType: entry.accessType,
     hospitalityCategory: entry.hospitalityCategory,
+    productName: entry.productName,
+    listingKind: entry.listingKind,
     capacity: "Unknown",
     priceMin: null,
     priceMax: null,
@@ -76,6 +80,7 @@ const STARTER_ENTRIES: StarterEntry[] = [
     eventDate: "June–July 2026",
     accessType: "Hospitality Package",
     hospitalityCategory: "FIFA Hospitality",
+    listingKind: "official_hub",
     sourceName: "FIFA",
     sourceType: "Official FIFA Hospitality",
     sourceUrl: "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/canadamexicoandusa2026/hospitality",
@@ -93,6 +98,7 @@ const STARTER_ENTRIES: StarterEntry[] = [
     eventDate: "June–July 2026",
     accessType: "Travel Package",
     hospitalityCategory: "Travel Partner",
+    listingKind: "official_hub",
     sourceName: "On Location",
     sourceType: "Official On Location",
     sourceUrl: "https://www.onlocationexp.com/fifa-world-cup-2026",
@@ -110,6 +116,7 @@ const STARTER_ENTRIES: StarterEntry[] = [
     eventDate: "July 2026",
     accessType: "Hospitality Package",
     hospitalityCategory: "Official Venue",
+    listingKind: "venue_portal",
     sourceName: "MetLife Stadium",
     sourceType: "Official Venue",
     sourceUrl: "https://www.metlifestadium.com/events-tickets/fifa-world-cup-26",
@@ -117,6 +124,25 @@ const STARTER_ENTRIES: StarterEntry[] = [
       "Official venue hospitality for matches at MetLife Stadium, including the World Cup Final. NYC metro access hub.",
     availability: "Inquiry Required",
     actionLabel: "View venue hospitality",
+  },
+  {
+    matchName: "Champions Club — World Cup Final",
+    matchStage: "Final",
+    matchStageDetail: "World Cup Final Venue",
+    city: "East Rutherford, NJ",
+    venue: "MetLife Stadium",
+    eventDate: "July 2026",
+    accessType: "Club Seat",
+    hospitalityCategory: "Official Venue",
+    listingKind: "hospitality_product",
+    productName: "Champions Club",
+    sourceName: "MetLife Stadium",
+    sourceType: "Official Venue",
+    sourceUrl: "https://www.metlifestadium.com/events-tickets/fifa-world-cup-26",
+    summary:
+      "Premium club-level hospitality for the World Cup Final at MetLife Stadium. Elevated dining, lounge access, and the most coveted seats in the building.",
+    availability: "Limited",
+    actionLabel: "Request Champions Club access",
   },
   {
     matchName: "SoFi Stadium Hospitality",
@@ -127,6 +153,7 @@ const STARTER_ENTRIES: StarterEntry[] = [
     eventDate: "June–July 2026",
     accessType: "Hospitality Package",
     hospitalityCategory: "Official Venue",
+    listingKind: "venue_portal",
     sourceName: "SoFi Stadium",
     sourceType: "Official Venue",
     sourceUrl: "https://www.sofistadium.com/events",
@@ -143,12 +170,32 @@ const STARTER_ENTRIES: StarterEntry[] = [
     eventDate: "June–July 2026",
     accessType: "Hospitality Package",
     hospitalityCategory: "Official Venue",
+    listingKind: "venue_portal",
     sourceName: "Hard Rock Stadium",
     sourceType: "Official Venue",
     sourceUrl: "https://www.hardrockstadium.com/events",
     summary: "Miami host-city hospitality and premium access for matches at Hard Rock Stadium.",
     availability: "Inquiry Required",
     actionLabel: "View venue hospitality",
+  },
+  {
+    matchName: "Pitchside Lounge — Hard Rock Stadium",
+    matchStage: "Group Stage",
+    matchStageDetail: "Host City Venue",
+    city: "Miami",
+    venue: "Hard Rock Stadium",
+    eventDate: "June–July 2026",
+    accessType: "Lounge",
+    hospitalityCategory: "Official Venue",
+    listingKind: "hospitality_product",
+    productName: "Pitchside Lounge",
+    sourceName: "Hard Rock Stadium",
+    sourceType: "Official Venue",
+    sourceUrl: "https://www.hardrockstadium.com/events",
+    summary:
+      "Pitchside lounge hospitality at Hard Rock Stadium — premium lounge access steps from the action in Miami.",
+    availability: "Limited",
+    actionLabel: "Request Pitchside Lounge access",
   },
   {
     matchName: "AT&T Stadium Hospitality",
@@ -159,6 +206,7 @@ const STARTER_ENTRIES: StarterEntry[] = [
     eventDate: "June–July 2026",
     accessType: "Hospitality Package",
     hospitalityCategory: "Official Venue",
+    listingKind: "venue_portal",
     sourceName: "AT&T Stadium",
     sourceType: "Official Venue",
     sourceUrl: "https://attstadium.com/events",
@@ -175,6 +223,7 @@ const STARTER_ENTRIES: StarterEntry[] = [
     eventDate: "June–July 2026",
     accessType: "Hospitality Package",
     hospitalityCategory: "Official Venue",
+    listingKind: "venue_portal",
     sourceName: "NRG Park",
     sourceType: "Official Venue",
     sourceUrl: "https://www.nrgpark.com/events",
@@ -191,6 +240,7 @@ const STARTER_ENTRIES: StarterEntry[] = [
     eventDate: "June–July 2026",
     accessType: "Hospitality Package",
     hospitalityCategory: "Official Venue",
+    listingKind: "venue_portal",
     sourceName: "Gillette Stadium",
     sourceType: "Official Venue",
     sourceUrl: "https://www.gillette-stadium.com/events",
@@ -207,6 +257,7 @@ const STARTER_ENTRIES: StarterEntry[] = [
     eventDate: "June–July 2026",
     accessType: "Hospitality Package",
     hospitalityCategory: "Official Venue",
+    listingKind: "venue_portal",
     sourceName: "Lincoln Financial Field",
     sourceType: "Official Venue",
     sourceUrl: "https://www.lincolnfinancialfield.com/events",
@@ -223,6 +274,7 @@ const STARTER_ENTRIES: StarterEntry[] = [
     eventDate: "June–July 2026",
     accessType: "Hospitality Package",
     hospitalityCategory: "Official Venue",
+    listingKind: "venue_portal",
     sourceName: "Levi's Stadium",
     sourceType: "Official Venue",
     sourceUrl: "https://www.levisstadium.com/events",
@@ -239,6 +291,7 @@ const STARTER_ENTRIES: StarterEntry[] = [
     eventDate: "June–July 2026",
     accessType: "Hospitality Package",
     hospitalityCategory: "Official Venue",
+    listingKind: "venue_portal",
     sourceName: "Lumen Field",
     sourceType: "Official Venue",
     sourceUrl: "https://www.lumenfield.com/events",
@@ -255,6 +308,7 @@ const STARTER_ENTRIES: StarterEntry[] = [
     eventDate: "June–July 2026",
     accessType: "Travel Package",
     hospitalityCategory: "Travel Partner",
+    listingKind: "travel_bundle",
     sourceName: "Marriott",
     sourceType: "Hospitality Company",
     sourceUrl: "https://www.marriott.com",
@@ -272,14 +326,18 @@ export function getStarterDirectoryRecords(): AccessRecord[] {
 
 export function mergeStarterRecords(records: AccessRecord[]): AccessRecord[] {
   const starter = getStarterDirectoryRecords();
-  const byUrl = new Map<string, AccessRecord>();
+  const byKey = new Map<string, AccessRecord>();
+
+  function recordKey(record: AccessRecord): string {
+    return `${record.sourceUrl}|${record.matchName}`;
+  }
 
   for (const record of starter) {
-    byUrl.set(record.sourceUrl, record);
+    byKey.set(recordKey(record), record);
   }
   for (const record of records) {
-    byUrl.set(record.sourceUrl, applyOfficialInference(record));
+    byKey.set(recordKey(record), applyOfficialInference(record));
   }
 
-  return Array.from(byUrl.values());
+  return Array.from(byKey.values());
 }

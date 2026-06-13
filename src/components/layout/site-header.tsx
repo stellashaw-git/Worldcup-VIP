@@ -11,8 +11,8 @@ export function SiteHeader() {
           BLACKBOOK
         </Link>
         <nav className="flex items-center gap-4 text-sm text-muted-foreground">
-          <Link href="/#opportunities" className="hover:text-foreground">
-            Index
+          <Link href="/#cities" className="hover:text-foreground">
+            Host cities
           </Link>
           <Link href="/#waitlist" className="hover:text-foreground">
             Waitlist

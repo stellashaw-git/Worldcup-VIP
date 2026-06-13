@@ -69,6 +69,17 @@ export const REVIEW_STATUSES = [
 
 export type ReviewStatus = (typeof REVIEW_STATUSES)[number];
 
+export const LISTING_KINDS = [
+  "official_hub",
+  "venue_portal",
+  "hospitality_product",
+  "travel_bundle",
+  "private_experience",
+  "unknown",
+] as const;
+
+export type ListingKind = (typeof LISTING_KINDS)[number];
+
 export type ReviewQueueItem = {
   id: string;
   status: ReviewStatus;
@@ -120,6 +131,7 @@ export type AccessRecord = {
   summary: string;
   confidenceScore: number;
   actionLabel?: string;
+  listingKind?: ListingKind;
 };
 
 export type SourceOffering = {

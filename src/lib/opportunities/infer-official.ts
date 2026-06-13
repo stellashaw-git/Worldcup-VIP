@@ -5,6 +5,7 @@ import type {
   MatchStage,
   SourceType,
 } from "@/lib/opportunities/types";
+import { applyListingKind } from "@/lib/opportunities/listing-kind";
 
 type OfficialInference = Pick<
   AccessRecord,
@@ -118,9 +119,9 @@ export function applyOfficialInference(
     record.sourceType,
     record.sourceName
   );
-  if (!inferred) return record;
+  if (!inferred) return applyListingKind(record);
 
-  return {
+  return applyListingKind({
     ...record,
     matchStage:
       record.matchStage === "Unknown"
@@ -134,7 +135,7 @@ export function applyOfficialInference(
       record.hospitalityCategory === "Unknown"
         ? inferred.hospitalityCategory
         : record.hospitalityCategory,
-  };
+  });
 }
 
 export function getStageBadgeLabel(record: AccessRecord): string | null {

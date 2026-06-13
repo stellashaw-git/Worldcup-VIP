@@ -2,9 +2,9 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 
 const VALUE_POINTS = [
-  "Official hospitality & venue packages",
-  "US host cities — filter by type",
-  "Alerts & access requests — not a ticket store",
+  "Suites, lounges & official hospitality packages",
+  "Browse city → stadium → package",
+  "Early alerts when premium inventory opens",
 ] as const;
 
 export function HeroSection() {
@@ -22,8 +22,12 @@ export function HeroSection() {
               World Cup 2026 Access
             </h1>
             <p className="text-lg text-foreground/90 sm:text-xl">
-              Find hospitality, host-city venues, and premium experiences across
-              the US — beyond regular tickets.
+              The matches everyone wants. The access few get.
+            </p>
+            <p className="text-base text-muted-foreground sm:text-lg">
+              Official hospitality across every US host city — from the Final at
+              MetLife to premium lounges in Miami. Inventory is limited and moves
+              fast.
             </p>
           </div>
 
@@ -38,10 +42,10 @@ export function HeroSection() {
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
-              href="#opportunities"
+              href="#cities"
               className={buttonVariants({ size: "lg", className: "h-11 px-6" })}
             >
-              Browse access
+              Explore host cities
             </Link>
             <Link
               href="#waitlist"
@@ -51,13 +55,13 @@ export function HeroSection() {
                 className: "h-11 px-6",
               })}
             >
-              Get alerts
+              Get early access
             </Link>
           </div>
 
-          <p className="text-sm text-muted-foreground">
-            We don&apos;t sell tickets or process payments — we show official
-            paths and premium options. Pick your city on the waitlist.
+          <p className="text-sm font-medium text-primary/90">
+            Final host: New York Metro · Packages opening now — don&apos;t wait
+            until it&apos;s gone.
           </p>
         </div>
       </div>

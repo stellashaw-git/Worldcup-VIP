@@ -11,8 +11,11 @@ export function SiteFooter() {
           World Cup 2026 access · National alerts · NYC social access
         </p>
         <div className="flex flex-wrap gap-4 text-xs">
-          <Link href="/#opportunities" className="hover:text-primary">
-            Access index
+          <Link href="/#cities" className="hover:text-primary">
+            Host cities
+          </Link>
+          <Link href="/#official-hubs" className="hover:text-primary">
+            Official hubs
           </Link>
           <Link href="/#waitlist" className="hover:text-primary">
             Join waitlist
@@ -25,8 +28,9 @@ export function SiteFooter() {
           </Link>
         </div>
         <p className="text-xs leading-relaxed">
-          Independent access directory. We do not sell tickets, process
-          transactions, or represent FIFA unless explicitly stated.
+          Independent World Cup 2026 access directory. Official pathways to
+          premium hospitality — we do not represent FIFA unless explicitly
+          stated.
         </p>
       </div>
     </footer>

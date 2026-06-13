@@ -61,6 +61,14 @@ export function OpportunityCard({ record }: { record: AccessRecord }) {
         </div>
       </CardHeader>
       <CardContent className="grid gap-2 text-sm">
+        {record.productName && (
+          <div className="flex justify-between gap-4">
+            <span className="text-muted-foreground">Package</span>
+            <span className="text-right font-medium">
+              {formatField(record.productName)}
+            </span>
+          </div>
+        )}
         <div className="flex justify-between gap-4">
           <span className="text-muted-foreground">Category</span>
           <span className="text-right font-medium">

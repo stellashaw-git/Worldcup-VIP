@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Building2, Mail, Upload } from "lucide-react";
+import { ArrowRight, MapPin, Mail, Upload } from "lucide-react";
 
 export function LaunchCtaSection() {
   return (
@@ -9,19 +9,19 @@ export function LaunchCtaSection() {
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <div className="grid gap-4 sm:grid-cols-3">
           <Link
-            href="#opportunities"
+            href="#cities"
             className="group flex flex-col gap-3 rounded-xl border border-border/60 bg-background/40 p-5 transition-colors hover:border-primary/40"
           >
-            <Building2 className="size-5 text-primary" aria-hidden />
+            <MapPin className="size-5 text-primary" aria-hidden />
             <div>
-              <p className="font-medium">Browse access</p>
+              <p className="font-medium">Pick your host city</p>
               <p className="mt-1 text-sm text-muted-foreground">
-                Official FIFA hubs, stadium venues, hotels, and travel
-                partners.
+                NYC Final, Miami, LA, Dallas — then choose your stadium and
+                package.
               </p>
             </div>
             <span className="inline-flex items-center gap-1 text-sm text-primary">
-              Explore
+              Browse cities
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </span>
           </Link>
@@ -32,9 +32,9 @@ export function LaunchCtaSection() {
           >
             <Mail className="size-5 text-primary" aria-hidden />
             <div>
-              <p className="font-medium">Get alerts</p>
+              <p className="font-medium">Get early access</p>
               <p className="mt-1 text-sm text-muted-foreground">
-                Email updates by city — US coverage plus NYC social access.
+                Be first to know when suites and lounges open in your city.
               </p>
             </div>
             <span className="inline-flex items-center gap-1 text-sm text-primary">
