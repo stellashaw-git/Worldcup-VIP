@@ -116,6 +116,17 @@ export async function addLead(body: CreateLeadBody): Promise<Lead> {
         createdAt,
       };
       break;
+    case "join-updates":
+      lead = {
+        id,
+        type: "join-updates",
+        name: body.name.trim(),
+        email: body.email.trim().toLowerCase(),
+        city: body.city.trim(),
+        linkedin: body.linkedin?.trim() || null,
+        createdAt,
+      };
+      break;
     default:
       throw new Error("Invalid lead type");
   }
@@ -134,5 +145,6 @@ export async function getLeadCounts() {
     listingSubmission: leads.filter((l) => l.type === "listing-submission").length,
     memberApplication: leads.filter((l) => l.type === "member-application").length,
     eventInterest: leads.filter((l) => l.type === "event-interest").length,
+    joinUpdates: leads.filter((l) => l.type === "join-updates").length,
   };
 }

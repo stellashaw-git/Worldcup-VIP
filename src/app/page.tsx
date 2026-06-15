@@ -1,13 +1,15 @@
 import { HeroSection } from "@/components/home/hero-section";
-import { EditorsPicksSection } from "@/components/home/editors-picks-section";
-import { MemberApplicationSection } from "@/components/home/member-application-section";
+import { WeeklyPicksSection } from "@/components/home/weekly-picks-section";
+import { WhyPicksSection } from "@/components/home/why-picks-section";
+import { JoinUpdatesSection } from "@/components/home/join-updates-section";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <EditorsPicksSection />
-      <MemberApplicationSection />
+      <WeeklyPicksSection />
+      <WhyPicksSection />
+      <JoinUpdatesSection />
     </>
   );
 }

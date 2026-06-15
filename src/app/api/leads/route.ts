@@ -121,6 +121,20 @@ export async function POST(request: Request) {
       }
     }
 
+    if (body.type === "join-updates") {
+      if (
+        !body.name?.trim() ||
+        !body.email?.trim() ||
+        !isValidEmail(body.email) ||
+        !body.city?.trim()
+      ) {
+        return NextResponse.json(
+          { error: "Name, email, and city required" },
+          { status: 400 }
+        );
+      }
+    }
+
     const lead = await addLead(body);
     return NextResponse.json({ ok: true, lead });
   } catch {

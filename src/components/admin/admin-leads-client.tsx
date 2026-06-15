@@ -15,6 +15,7 @@ type LeadsResponse = {
     listingSubmission: number;
     memberApplication: number;
     eventInterest: number;
+    joinUpdates: number;
   };
 };
 
@@ -136,14 +137,15 @@ export function AdminLeadsClient() {
           <div className="mb-6 flex flex-wrap gap-4 text-sm">
             <span>Total: {data.counts.total}</span>
             <span>Applications: {data.counts.memberApplication}</span>
+            <span>Updates: {data.counts.joinUpdates}</span>
             <span>Event interest: {data.counts.eventInterest}</span>
             <span>Legacy waitlist: {data.counts.platformWaitlist}</span>
           </div>
 
           {data.leads.length === 0 && (
             <p className="mb-6 text-sm text-muted-foreground">
-              No leads yet. Share the apply link:{" "}
-              <code className="text-xs">/#apply</code>
+              No leads yet. Share the updates link:{" "}
+              <code className="text-xs">/#updates</code>
             </p>
           )}
 
@@ -187,6 +189,15 @@ export function AdminLeadsClient() {
                               {lead.email}
                             </span>
                           )}
+                        </>
+                      )}
+                      {lead.type === "join-updates" && (
+                        <>
+                          {lead.name}
+                          <br />
+                          <span className="text-muted-foreground">
+                            {lead.email}
+                          </span>
                         </>
                       )}
                       {lead.type === "listing-submission" && (
@@ -238,6 +249,17 @@ export function AdminLeadsClient() {
                           {lead.eventTitle}
                           <br />
                           <span className="text-xs">{lead.eventId}</span>
+                        </>
+                      )}
+                      {lead.type === "join-updates" && (
+                        <>
+                          {lead.city}
+                          {lead.linkedin && (
+                            <>
+                              <br />
+                              <span className="text-xs">{lead.linkedin}</span>
+                            </>
+                          )}
                         </>
                       )}
                       {lead.type === "listing-submission" && (

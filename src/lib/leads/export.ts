@@ -158,6 +158,12 @@ export function leadToExportRow(lead: Lead): LeadExportRow {
       row.eventTitle = lead.eventTitle;
       row.city = "New York";
       break;
+    case "join-updates":
+      row.email = lead.email;
+      row.name = lead.name;
+      row.city = lead.city;
+      row.linkedin = lead.linkedin ?? "";
+      break;
   }
 
   return row;

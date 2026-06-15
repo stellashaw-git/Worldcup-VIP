@@ -14,8 +14,8 @@ export function SiteHeader() {
           <Link href="/#picks" className="hover:text-foreground">
             Picks
           </Link>
-          <Link href="/#apply" className="hover:text-foreground">
-            Apply
+          <Link href="/#updates" className="hover:text-foreground">
+            Updates
           </Link>
         </nav>
       </div>

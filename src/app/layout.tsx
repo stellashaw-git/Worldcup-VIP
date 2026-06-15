@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "BLACKBOOK | World Cup Social Guide",
   description:
-    "Curated watch gatherings and social experiences in New York during World Cup 2026. Approved members receive updates and invites.",
+    "Discover where New York gathers during World Cup 2026. Curated watch parties, gatherings, and hospitality picks.",
 };
 
 export default function RootLayout({

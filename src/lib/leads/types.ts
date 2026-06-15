@@ -43,6 +43,7 @@ export const LEAD_TYPES = [
   "listing-submission",
   "member-application",
   "event-interest",
+  "join-updates",
 ] as const;
 
 export type LeadType = (typeof LEAD_TYPES)[number];
@@ -107,12 +108,23 @@ export type EventInterestLead = {
   createdAt: string;
 };
 
+export type JoinUpdatesLead = {
+  id: string;
+  type: "join-updates";
+  name: string;
+  email: string;
+  city: string;
+  linkedin: string | null;
+  createdAt: string;
+};
+
 export type Lead =
   | PlatformWaitlistLead
   | AccessRequestLead
   | ListingSubmissionLead
   | MemberApplicationLead
-  | EventInterestLead;
+  | EventInterestLead
+  | JoinUpdatesLead;
 
 export type CreatePlatformWaitlistBody = {
   type: "platform-waitlist";
@@ -164,9 +176,18 @@ export type CreateEventInterestBody = {
   name?: string;
 };
 
+export type CreateJoinUpdatesBody = {
+  type: "join-updates";
+  name: string;
+  email: string;
+  city: string;
+  linkedin?: string;
+};
+
 export type CreateLeadBody =
   | CreatePlatformWaitlistBody
   | CreateAccessRequestBody
   | CreateListingSubmissionBody
   | CreateMemberApplicationBody
-  | CreateEventInterestBody;
+  | CreateEventInterestBody
+  | CreateJoinUpdatesBody;
