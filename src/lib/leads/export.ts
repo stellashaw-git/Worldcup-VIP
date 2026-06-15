@@ -8,6 +8,10 @@ export type LeadExportRow = {
   organization: string;
   city: string;
   nycPlusInterest: string;
+  linkedin: string;
+  role: string;
+  interests: string;
+  note: string;
   recordTitle: string;
   recordId: string;
   message: string;
@@ -17,6 +21,8 @@ export type LeadExportRow = {
   description: string;
   listingUrl: string;
   priceRange: string;
+  eventId: string;
+  eventTitle: string;
 };
 
 export const LEAD_EXPORT_HEADERS: (keyof LeadExportRow)[] = [
@@ -24,11 +30,17 @@ export const LEAD_EXPORT_HEADERS: (keyof LeadExportRow)[] = [
   "type",
   "email",
   "name",
+  "linkedin",
+  "role",
+  "interests",
+  "note",
   "organization",
   "city",
   "nycPlusInterest",
   "recordTitle",
   "recordId",
+  "eventId",
+  "eventTitle",
   "message",
   "listingTitle",
   "listingType",
@@ -43,11 +55,17 @@ export const LEAD_EXPORT_HEADER_LABELS: Record<keyof LeadExportRow, string> = {
   type: "Type",
   email: "Email",
   name: "Name",
+  linkedin: "LinkedIn",
+  role: "Role",
+  interests: "Interests",
+  note: "Note",
   organization: "Organization",
   city: "City",
   nycPlusInterest: "NYC Plus Interest",
   recordTitle: "Record Title",
   recordId: "Record ID",
+  eventId: "Event ID",
+  eventTitle: "Event Title",
   message: "Message",
   listingTitle: "Listing Title",
   listingType: "Listing Type",
@@ -66,6 +84,10 @@ function emptyRow(): LeadExportRow {
     organization: "",
     city: "",
     nycPlusInterest: "",
+    linkedin: "",
+    role: "",
+    interests: "",
+    note: "",
     recordTitle: "",
     recordId: "",
     message: "",
@@ -75,6 +97,8 @@ function emptyRow(): LeadExportRow {
     description: "",
     listingUrl: "",
     priceRange: "",
+    eventId: "",
+    eventTitle: "",
   };
 }
 
@@ -108,6 +132,22 @@ export function leadToExportRow(lead: Lead): LeadExportRow {
       row.listingUrl = lead.listingUrl ?? "";
       row.priceRange = lead.priceRange ?? "";
       break;
+    case "member-application":
+      row.email = lead.email;
+      row.name = lead.name;
+      row.linkedin = lead.linkedin;
+      row.role = lead.role;
+      row.interests = lead.interests.join("; ");
+      row.note = lead.note ?? "";
+      row.city = "New York";
+      break;
+    case "event-interest":
+      row.email = lead.email;
+      row.name = lead.name ?? "";
+      row.eventId = lead.eventId;
+      row.eventTitle = lead.eventTitle;
+      row.city = "New York";
+      break;
   }
 
   return row;
@@ -132,7 +172,6 @@ export function buildLeadsCsv(leads: Lead[]): string {
       .join(",");
   });
 
-  // UTF-8 BOM helps Excel open encoding correctly on Windows.
   return `\uFEFF${headerLine}\n${rows.join("\n")}\n`;
 }
 

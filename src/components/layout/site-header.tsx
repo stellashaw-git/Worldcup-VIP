@@ -11,14 +11,11 @@ export function SiteHeader() {
           BLACKBOOK
         </Link>
         <nav className="flex items-center gap-4 text-sm text-muted-foreground">
-          <Link href="/#cities" className="hover:text-foreground">
-            Host cities
+          <Link href="/#picks" className="hover:text-foreground">
+            Editor&apos;s picks
           </Link>
-          <Link href="/#waitlist" className="hover:text-foreground">
-            Waitlist
-          </Link>
-          <Link href="/submit" className="hover:text-foreground">
-            Submit
+          <Link href="/#apply" className="hover:text-foreground">
+            Apply
           </Link>
         </nav>
       </div>

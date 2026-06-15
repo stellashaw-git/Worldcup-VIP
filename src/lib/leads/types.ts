@@ -1,3 +1,24 @@
+export const MEMBER_ROLES = [
+  "Founder",
+  "Investor",
+  "Operator",
+  "Creator",
+  "Brand",
+  "Other",
+] as const;
+
+export type MemberRole = (typeof MEMBER_ROLES)[number];
+
+export const MEMBER_INTERESTS = [
+  "Watch gatherings",
+  "Private viewings",
+  "Hospitality",
+  "Private dinners",
+  "Brand experiences",
+] as const;
+
+export type MemberInterest = (typeof MEMBER_INTERESTS)[number];
+
 export const US_HOST_CITIES = [
   "New York / NJ",
   "Philadelphia",
@@ -20,6 +41,8 @@ export const LEAD_TYPES = [
   "platform-waitlist",
   "access-request",
   "listing-submission",
+  "member-application",
+  "event-interest",
 ] as const;
 
 export type LeadType = (typeof LEAD_TYPES)[number];
@@ -60,10 +83,34 @@ export type ListingSubmissionLead = {
   createdAt: string;
 };
 
+export type MemberApplicationLead = {
+  id: string;
+  type: "member-application";
+  name: string;
+  email: string;
+  linkedin: string;
+  role: MemberRole;
+  interests: MemberInterest[];
+  note: string | null;
+  createdAt: string;
+};
+
+export type EventInterestLead = {
+  id: string;
+  type: "event-interest";
+  email: string;
+  eventId: string;
+  eventTitle: string;
+  name: string | null;
+  createdAt: string;
+};
+
 export type Lead =
   | PlatformWaitlistLead
   | AccessRequestLead
-  | ListingSubmissionLead;
+  | ListingSubmissionLead
+  | MemberApplicationLead
+  | EventInterestLead;
 
 export type CreatePlatformWaitlistBody = {
   type: "platform-waitlist";
@@ -95,7 +142,27 @@ export type CreateListingSubmissionBody = {
   priceRange?: string;
 };
 
+export type CreateMemberApplicationBody = {
+  type: "member-application";
+  name: string;
+  email: string;
+  linkedin: string;
+  role: MemberRole;
+  interests: MemberInterest[];
+  note?: string;
+};
+
+export type CreateEventInterestBody = {
+  type: "event-interest";
+  email: string;
+  eventId: string;
+  eventTitle: string;
+  name?: string;
+};
+
 export type CreateLeadBody =
   | CreatePlatformWaitlistBody
   | CreateAccessRequestBody
-  | CreateListingSubmissionBody;
+  | CreateListingSubmissionBody
+  | CreateMemberApplicationBody
+  | CreateEventInterestBody;

@@ -8,44 +8,43 @@ export function HeroSection() {
       <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
         <div className="flex max-w-2xl flex-col gap-8">
           <p className="text-xs font-medium uppercase tracking-[0.35em] text-primary">
-            BLACKBOOK
+            BLACKBOOK · NEW YORK
           </p>
 
           <div className="flex flex-col gap-5">
             <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
               World Cup Social Guide
             </h1>
-            <p className="text-lg text-foreground/90 sm:text-xl leading-relaxed">
-              The best places to watch, gather, and experience World Cup 2026.
+            <p className="text-lg text-foreground/90 leading-relaxed sm:text-xl">
+              Curated events, watch parties, and experiences for founders,
+              investors, operators, creators, and premium guests during World Cup
+              2026.
             </p>
             <p className="text-base text-muted-foreground leading-relaxed sm:text-lg">
-              Curated hospitality, events, and experiences across host cities.
-              Discover where the tournament happens beyond the stadium.
+              We&apos;ve collected the premium gatherings worth knowing about in
+              New York — selective rooms where high-value people watch together
+              and share the same interest in the tournament.
             </p>
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
-              href="#cities"
+              href="#apply"
               className={buttonVariants({ size: "lg", className: "h-11 px-6" })}
             >
-              Explore host cities
+              Apply for review
             </Link>
             <Link
-              href="#waitlist"
+              href="#picks"
               className={buttonVariants({
                 variant: "outline",
                 size: "lg",
                 className: "h-11 px-6",
               })}
             >
-              Join waitlist
+              View editor&apos;s picks
             </Link>
           </div>
-
-          <p className="text-sm text-muted-foreground">
-            Starting in New York. National coverage on the waitlist.
-          </p>
         </div>
       </div>
     </section>

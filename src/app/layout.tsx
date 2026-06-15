@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { HomeProvider } from "@/components/home/home-provider";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import "./globals.css";
@@ -18,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "BLACKBOOK | World Cup Social Guide",
   description:
-    "Curated hospitality, events, and experiences for World Cup 2026 across US host cities.",
+    "Curated watch gatherings and premium experiences in New York during World Cup 2026. Apply for review.",
 };
 
 export default function RootLayout({
@@ -32,9 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
       >
         <SiteHeader />
-        <main className="flex-1">
-          <HomeProvider>{children}</HomeProvider>
-        </main>
+        <main className="flex-1">{children}</main>
         <SiteFooter />
       </body>
     </html>

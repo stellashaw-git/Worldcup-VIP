@@ -86,6 +86,30 @@ export async function addLead(body: CreateLeadBody): Promise<Lead> {
         createdAt,
       };
       break;
+    case "member-application":
+      lead = {
+        id,
+        type: "member-application",
+        name: body.name.trim(),
+        email: body.email.trim().toLowerCase(),
+        linkedin: body.linkedin.trim(),
+        role: body.role,
+        interests: body.interests,
+        note: body.note?.trim() || null,
+        createdAt,
+      };
+      break;
+    case "event-interest":
+      lead = {
+        id,
+        type: "event-interest",
+        email: body.email.trim().toLowerCase(),
+        eventId: body.eventId,
+        eventTitle: body.eventTitle.trim(),
+        name: body.name?.trim() || null,
+        createdAt,
+      };
+      break;
     default:
       throw new Error("Invalid lead type");
   }
@@ -102,5 +126,7 @@ export async function getLeadCounts() {
     platformWaitlist: leads.filter((l) => l.type === "platform-waitlist").length,
     accessRequest: leads.filter((l) => l.type === "access-request").length,
     listingSubmission: leads.filter((l) => l.type === "listing-submission").length,
+    memberApplication: leads.filter((l) => l.type === "member-application").length,
+    eventInterest: leads.filter((l) => l.type === "event-interest").length,
   };
 }

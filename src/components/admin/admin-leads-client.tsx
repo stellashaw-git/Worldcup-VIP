@@ -1,9 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
 import { Download } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { buildExportFilename } from "@/lib/leads/export";
 import type { Lead } from "@/lib/leads/types";
 
@@ -14,6 +13,8 @@ type LeadsResponse = {
     platformWaitlist: number;
     accessRequest: number;
     listingSubmission: number;
+    memberApplication: number;
+    eventInterest: number;
   };
 };
 
@@ -88,8 +89,8 @@ export function AdminLeadsClient() {
         <div>
           <h1 className="text-2xl font-semibold">Leads inbox</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Waitlist signups, access requests, and listing submissions. Download
-            as Excel-compatible CSV for Mailchimp, Klaviyo, or spreadsheets.
+            Member applications, event interest, and legacy submissions.
+            Download as Excel-compatible CSV.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -103,18 +104,6 @@ export function AdminLeadsClient() {
             <Download className="size-4" aria-hidden />
             {isExporting ? "Downloading…" : "Download Excel"}
           </Button>
-          <Link
-            href="/admin/review"
-            className={buttonVariants({ variant: "outline", size: "sm" })}
-          >
-            Review queue
-          </Link>
-          <Link
-            href="/admin/import"
-            className={buttonVariants({ variant: "outline", size: "sm" })}
-          >
-            Import official
-          </Link>
         </div>
       </div>
 
@@ -146,15 +135,15 @@ export function AdminLeadsClient() {
         <>
           <div className="mb-6 flex flex-wrap gap-4 text-sm">
             <span>Total: {data.counts.total}</span>
-            <span>Waitlist: {data.counts.platformWaitlist}</span>
-            <span>Access requests: {data.counts.accessRequest}</span>
-            <span>Listing submissions: {data.counts.listingSubmission}</span>
+            <span>Applications: {data.counts.memberApplication}</span>
+            <span>Event interest: {data.counts.eventInterest}</span>
+            <span>Legacy waitlist: {data.counts.platformWaitlist}</span>
           </div>
 
           {data.leads.length === 0 && (
             <p className="mb-6 text-sm text-muted-foreground">
-              No leads yet. Share the waitlist link:{" "}
-              <code className="text-xs">/#waitlist</code>
+              No leads yet. Share the apply link:{" "}
+              <code className="text-xs">/#apply</code>
             </p>
           )}
 
@@ -178,6 +167,28 @@ export function AdminLeadsClient() {
                     <td className="px-4 py-3">
                       {lead.type === "platform-waitlist" && lead.email}
                       {lead.type === "access-request" && lead.email}
+                      {lead.type === "member-application" && (
+                        <>
+                          {lead.name}
+                          <br />
+                          <span className="text-muted-foreground">
+                            {lead.email}
+                          </span>
+                        </>
+                      )}
+                      {lead.type === "event-interest" && (
+                        <>
+                          {lead.name ?? lead.email}
+                          {lead.name && (
+                            <br />
+                          )}
+                          {lead.name && (
+                            <span className="text-muted-foreground">
+                              {lead.email}
+                            </span>
+                          )}
+                        </>
+                      )}
                       {lead.type === "listing-submission" && (
                         <>
                           {lead.submitterName}
@@ -199,6 +210,26 @@ export function AdminLeadsClient() {
                         <>
                           {lead.recordTitle}
                           {lead.message && ` — ${lead.message}`}
+                        </>
+                      )}
+                      {lead.type === "member-application" && (
+                        <>
+                          {lead.role} · {lead.interests.join(", ")}
+                          <br />
+                          <span className="text-xs">{lead.linkedin}</span>
+                          {lead.note && (
+                            <>
+                              <br />
+                              {lead.note}
+                            </>
+                          )}
+                        </>
+                      )}
+                      {lead.type === "event-interest" && (
+                        <>
+                          {lead.eventTitle}
+                          <br />
+                          <span className="text-xs">{lead.eventId}</span>
                         </>
                       )}
                       {lead.type === "listing-submission" && (

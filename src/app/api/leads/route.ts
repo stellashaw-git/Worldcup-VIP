@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { isAuthorizedAdmin, unauthorizedResponse } from "@/lib/admin/auth";
 import { addLead, getLeadCounts, loadLeads } from "@/lib/leads/store";
 import type { CreateLeadBody } from "@/lib/leads/types";
-import { US_HOST_CITIES } from "@/lib/leads/types";
+import { MEMBER_INTERESTS, MEMBER_ROLES, US_HOST_CITIES } from "@/lib/leads/types";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -62,6 +62,42 @@ export async function POST(request: Request) {
       ) {
         return NextResponse.json(
           { error: "Name, email, title, type, city, and description required" },
+          { status: 400 }
+        );
+      }
+    }
+
+    if (body.type === "member-application") {
+      if (
+        !body.name?.trim() ||
+        !body.email?.trim() ||
+        !isValidEmail(body.email) ||
+        !body.linkedin?.trim() ||
+        !MEMBER_ROLES.includes(body.role) ||
+        !body.interests?.length
+      ) {
+        return NextResponse.json(
+          { error: "Name, email, LinkedIn, role, and at least one interest required" },
+          { status: 400 }
+        );
+      }
+      const validInterests = body.interests.every((i) =>
+        MEMBER_INTERESTS.includes(i)
+      );
+      if (!validInterests) {
+        return NextResponse.json({ error: "Invalid interest selection" }, { status: 400 });
+      }
+    }
+
+    if (body.type === "event-interest") {
+      if (
+        !body.email?.trim() ||
+        !isValidEmail(body.email) ||
+        !body.eventId?.trim() ||
+        !body.eventTitle?.trim()
+      ) {
+        return NextResponse.json(
+          { error: "Valid email, eventId, and eventTitle required" },
           { status: 400 }
         );
       }
