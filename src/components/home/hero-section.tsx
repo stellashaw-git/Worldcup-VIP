@@ -5,25 +5,28 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden border-b border-border/60">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_oklch(0.25_0.04_85)_0%,_transparent_55%)]" />
-      <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
-        <div className="flex max-w-2xl flex-col gap-8">
+      <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
+        <div className="flex max-w-xl flex-col gap-8">
           <p className="text-xs font-medium uppercase tracking-[0.35em] text-primary">
             BLACKBOOK · NEW YORK
           </p>
 
-          <div className="flex flex-col gap-5">
-            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+          <div className="flex flex-col gap-4">
+            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
               World Cup Social Guide
             </h1>
-            <p className="text-lg text-foreground/90 leading-relaxed sm:text-xl">
-              Curated events, watch parties, and experiences for founders,
-              investors, operators, creators, and premium guests during World Cup
-              2026.
+            <p className="text-lg leading-relaxed text-foreground/90 sm:text-xl">
+              Watch gatherings, private viewings, dinners, and selected
+              hospitality — curated for New York during World Cup 2026.
             </p>
-            <p className="text-base text-muted-foreground leading-relaxed sm:text-lg">
-              We&apos;ve collected the premium gatherings worth knowing about in
-              New York — selective rooms where high-value people watch together
-              and share the same interest in the tournament.
+            <p className="text-base leading-relaxed text-muted-foreground">
+              A selective social calendar for people who want to get out, meet
+              others who care about the game, and celebrate the tournament
+              together.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Approved members receive curated updates and invites throughout
+              the season.
             </p>
           </div>
 
@@ -32,7 +35,7 @@ export function HeroSection() {
               href="#apply"
               className={buttonVariants({ size: "lg", className: "h-11 px-6" })}
             >
-              Apply for review
+              Apply
             </Link>
             <Link
               href="#picks"
@@ -42,7 +45,7 @@ export function HeroSection() {
                 className: "h-11 px-6",
               })}
             >
-              View editor&apos;s picks
+              View picks
             </Link>
           </div>
         </div>

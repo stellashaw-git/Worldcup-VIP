@@ -14,6 +14,8 @@ export function MemberApplicationSection() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [linkedin, setLinkedin] = useState("");
+  const [company, setCompany] = useState("");
+  const [website, setWebsite] = useState("");
   const [role, setRole] = useState<MemberRole>("Founder");
   const [interests, setInterests] = useState<MemberInterest[]>([
     "Watch gatherings",
@@ -50,6 +52,8 @@ export function MemberApplicationSection() {
           name,
           email,
           linkedin,
+          company,
+          website,
           role,
           interests,
           note: note.trim() || undefined,
@@ -78,25 +82,22 @@ export function MemberApplicationSection() {
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="mx-auto max-w-xl">
           <p className="text-xs font-medium uppercase tracking-[0.35em] text-primary">
-            Member application
+            Application
           </p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Apply for review
+            Apply
           </h2>
-          <p className="mt-3 text-muted-foreground">
-            We review every profile. If you&apos;re a fit, we&apos;ll send
-            curated updates and invite opportunities in New York during World
-            Cup 2026.
+          <p className="mt-2 text-sm text-muted-foreground">
+            We review every application. Approved members receive curated updates
+            and invites in New York.
           </p>
 
           {submitted ? (
             <div className="mt-8 rounded-xl border border-primary/30 bg-primary/10 px-6 py-8">
-              <p className="font-medium text-primary">
-                Thanks — we&apos;ll review your profile.
-              </p>
+              <p className="font-medium text-primary">Received.</p>
               <p className="mt-2 text-sm text-muted-foreground">
-                We&apos;ll send curated event updates for NYC as the tournament
-                approaches.
+                If approved, we&apos;ll send curated member updates throughout
+                World Cup 2026.
               </p>
             </div>
           ) : (
@@ -138,6 +139,29 @@ export function MemberApplicationSection() {
               </label>
 
               <label className="flex flex-col gap-1.5 text-sm">
+                <span className="font-medium">Company</span>
+                <Input
+                  required
+                  placeholder="Company name"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  className="h-11"
+                />
+              </label>
+
+              <label className="flex flex-col gap-1.5 text-sm">
+                <span className="font-medium">Website</span>
+                <Input
+                  type="url"
+                  required
+                  placeholder="company.com"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                  className="h-11"
+                />
+              </label>
+
+              <label className="flex flex-col gap-1.5 text-sm">
                 <span className="font-medium">Role</span>
                 <select
                   value={role}
@@ -172,7 +196,7 @@ export function MemberApplicationSection() {
 
               <label className="flex flex-col gap-1.5 text-sm">
                 <span className="font-medium">
-                  What kind of events are you looking for?{" "}
+                  Note{" "}
                   <span className="font-normal text-muted-foreground">
                     (optional)
                   </span>
@@ -188,7 +212,7 @@ export function MemberApplicationSection() {
               {error && <p className="text-sm text-destructive">{error}</p>}
 
               <Button type="submit" size="lg" disabled={isSubmitting}>
-                {isSubmitting ? "Submitting…" : "Submit application"}
+                {isSubmitting ? "Submitting…" : "Submit"}
               </Button>
             </form>
           )}

@@ -21,6 +21,18 @@ export async function GET(request: Request) {
   return NextResponse.json({ leads, counts });
 }
 
+function isValidWebsite(value: string): boolean {
+  const trimmed = value.trim();
+  if (trimmed.length < 4) return false;
+  try {
+    const url = trimmed.startsWith("http") ? trimmed : `https://${trimmed}`;
+    const parsed = new URL(url);
+    return parsed.hostname.includes(".");
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as CreateLeadBody;
@@ -73,11 +85,17 @@ export async function POST(request: Request) {
         !body.email?.trim() ||
         !isValidEmail(body.email) ||
         !body.linkedin?.trim() ||
+        !body.company?.trim() ||
+        !body.website?.trim() ||
+        !isValidWebsite(body.website) ||
         !MEMBER_ROLES.includes(body.role) ||
         !body.interests?.length
       ) {
         return NextResponse.json(
-          { error: "Name, email, LinkedIn, role, and at least one interest required" },
+          {
+            error:
+              "Name, email, LinkedIn, company, website, role, and at least one interest required",
+          },
           { status: 400 }
         );
       }

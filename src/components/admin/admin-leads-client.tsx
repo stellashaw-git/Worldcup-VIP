@@ -214,9 +214,17 @@ export function AdminLeadsClient() {
                       )}
                       {lead.type === "member-application" && (
                         <>
-                          {lead.role} · {lead.interests.join(", ")}
+                          {lead.role} · {lead.company}
+                          <br />
+                          <span className="text-xs">{lead.website}</span>
                           <br />
                           <span className="text-xs">{lead.linkedin}</span>
+                          {lead.interests.length > 0 && (
+                            <>
+                              <br />
+                              {lead.interests.join(", ")}
+                            </>
+                          )}
                           {lead.note && (
                             <>
                               <br />

@@ -24,16 +24,15 @@ export function EditorsPicksSection() {
       id="picks"
       className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16"
     >
-      <div className="mb-10 flex flex-col gap-3">
+      <div className="mb-10 flex flex-col gap-2">
         <p className="text-xs font-medium uppercase tracking-[0.35em] text-primary">
-          Editor&apos;s picks
+          Selected
         </p>
         <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-          Selected gatherings in New York
+          New York
         </h2>
-        <p className="max-w-2xl text-muted-foreground">
-          June–July 2026 · A short, curated list — not a database. Each pick is
-          an invite-oriented room we&apos;d actually attend.
+        <p className="text-sm text-muted-foreground">
+          June–July 2026
         </p>
       </div>
 
@@ -43,7 +42,7 @@ export function EditorsPicksSection() {
             key={category.id}
             className="rounded-full border border-border/60 bg-muted/20 px-3 py-1 text-xs text-muted-foreground"
           >
-            🏆 {category.label}
+            {category.label}
           </span>
         ))}
       </div>
@@ -104,7 +103,7 @@ function PickCard({ pick }: { pick: CuratedPick }) {
     <Card className="bg-card/60">
       <CardHeader className="gap-3">
         <p className="text-xs font-medium uppercase tracking-wide text-primary">
-          Editor&apos;s pick · {getCategoryLabel(pick.categoryId)}
+          Selected · {getCategoryLabel(pick.categoryId)}
         </p>
         <CardTitle className="text-base leading-snug">{pick.title}</CardTitle>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -121,9 +120,7 @@ function PickCard({ pick }: { pick: CuratedPick }) {
       </CardContent>
       <CardFooter className="flex-col items-stretch gap-3 border-t border-border/40 bg-transparent pt-4">
         {submitted ? (
-          <p className="text-sm text-muted-foreground">
-            Interest saved — we&apos;ll include this in your review if you apply.
-          </p>
+          <p className="text-sm text-muted-foreground">Noted.</p>
         ) : showForm ? (
           <form onSubmit={handleInterest} className="flex flex-col gap-2">
             <Input
@@ -144,7 +141,7 @@ function PickCard({ pick }: { pick: CuratedPick }) {
             {error && <p className="text-xs text-destructive">{error}</p>}
             <div className="flex gap-2">
               <Button type="submit" size="sm" disabled={isSubmitting}>
-                {isSubmitting ? "Saving…" : "Save interest"}
+                {isSubmitting ? "Saving…" : "Save"}
               </Button>
               <Button
                 type="button"
@@ -163,7 +160,7 @@ function PickCard({ pick }: { pick: CuratedPick }) {
             size="sm"
             onClick={() => setShowForm(true)}
           >
-            Interested in this gathering
+            Interested
           </Button>
         )}
       </CardFooter>

@@ -89,6 +89,8 @@ export type MemberApplicationLead = {
   name: string;
   email: string;
   linkedin: string;
+  company: string;
+  website: string;
   role: MemberRole;
   interests: MemberInterest[];
   note: string | null;
@@ -147,6 +149,8 @@ export type CreateMemberApplicationBody = {
   name: string;
   email: string;
   linkedin: string;
+  company: string;
+  website: string;
   role: MemberRole;
   interests: MemberInterest[];
   note?: string;

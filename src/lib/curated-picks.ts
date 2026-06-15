@@ -1,9 +1,9 @@
 export const EDITOR_CATEGORIES = [
-  { id: "watch", label: "Best watch experience" },
-  { id: "private", label: "Best private viewing" },
-  { id: "social", label: "Best social gathering" },
-  { id: "brand", label: "Best brand experience" },
-  { id: "hospitality", label: "Best hospitality experience" },
+  { id: "watch", label: "Watch experience" },
+  { id: "private", label: "Private viewing" },
+  { id: "social", label: "Social gathering" },
+  { id: "brand", label: "Brand experience" },
+  { id: "hospitality", label: "Hospitality experience" },
 ] as const;
 
 export type EditorCategoryId = (typeof EDITOR_CATEGORIES)[number]["id"];
@@ -24,7 +24,7 @@ export const NYC_CURATED_PICKS: CuratedPick[] = [
     date: "June 14, 2026",
     categoryId: "watch",
     description:
-      "An intimate watch gathering with a strong crowd and a well-run room — the kind of place where people stay for the full match and linger afterward.",
+      "An intimate room with a strong crowd — people stay through the final whistle.",
   },
   {
     id: "nyc-rooftop-opening",
@@ -32,7 +32,7 @@ export const NYC_CURATED_PICKS: CuratedPick[] = [
     date: "June 12, 2026",
     categoryId: "watch",
     description:
-      "Elevated skyline views and a social first half — curated for people who want atmosphere without the stadium crush.",
+      "Skyline views and a social first half — atmosphere without the stadium crush.",
   },
   {
     id: "nyc-lounge-viewing",
@@ -40,7 +40,7 @@ export const NYC_CURATED_PICKS: CuratedPick[] = [
     date: "June 21, 2026",
     categoryId: "private",
     description:
-      "A quieter, invite-oriented room with reserved seating and a guest list that skews toward operators and investors who actually watch the game.",
+      "A quiet, invite-only room with reserved seating and a considered guest list.",
   },
   {
     id: "nyc-supper-club",
@@ -48,7 +48,7 @@ export const NYC_CURATED_PICKS: CuratedPick[] = [
     date: "June 28, 2026",
     categoryId: "social",
     description:
-      "Dinner before kickoff, screens during the match, conversation after — a classic New York evening built around the tournament.",
+      "Dinner, match, conversation — a classic New York evening.",
   },
   {
     id: "nyc-brand-house",
@@ -56,7 +56,7 @@ export const NYC_CURATED_PICKS: CuratedPick[] = [
     date: "June 15, 2026",
     categoryId: "brand",
     description:
-      "A polished brand-led experience with good production value and a guest mix that’s worth meeting if you care about culture and sport.",
+      "Polished production and a guest mix worth knowing.",
   },
   {
     id: "nyc-hospitality-pathway",
@@ -64,7 +64,7 @@ export const NYC_CURATED_PICKS: CuratedPick[] = [
     date: "July 2026",
     categoryId: "hospitality",
     description:
-      "A premium hospitality route we’re tracking for members — lounge access, hosted service, and a room that feels considered rather than crowded.",
+      "Lounge access and hosted service — considered, not crowded.",
   },
   {
     id: "nyc-final-eve",
@@ -72,12 +72,12 @@ export const NYC_CURATED_PICKS: CuratedPick[] = [
     date: "July 18, 2026",
     categoryId: "social",
     description:
-      "A pre-final social gathering for people flying in for the closing stretch — light, social, and oriented around shared interest in the tournament.",
+      "A pre-final evening for those in town for the closing stretch.",
   },
 ];
 
 export function getCategoryLabel(categoryId: EditorCategoryId): string {
-  return EDITOR_CATEGORIES.find((c) => c.id === categoryId)?.label ?? "Editor's pick";
+  return EDITOR_CATEGORIES.find((c) => c.id === categoryId)?.label ?? "Selected";
 }
 
 export function getPickById(id: string): CuratedPick | undefined {

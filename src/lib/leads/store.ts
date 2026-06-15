@@ -87,12 +87,18 @@ export async function addLead(body: CreateLeadBody): Promise<Lead> {
       };
       break;
     case "member-application":
+      const websiteRaw = body.website.trim();
+      const websiteNormalized = websiteRaw.startsWith("http")
+        ? websiteRaw
+        : `https://${websiteRaw}`;
       lead = {
         id,
         type: "member-application",
         name: body.name.trim(),
         email: body.email.trim().toLowerCase(),
         linkedin: body.linkedin.trim(),
+        company: body.company.trim(),
+        website: websiteNormalized,
         role: body.role,
         interests: body.interests,
         note: body.note?.trim() || null,

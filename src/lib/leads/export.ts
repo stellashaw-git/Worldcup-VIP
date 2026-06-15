@@ -6,6 +6,8 @@ export type LeadExportRow = {
   email: string;
   name: string;
   organization: string;
+  company: string;
+  website: string;
   city: string;
   nycPlusInterest: string;
   linkedin: string;
@@ -34,6 +36,8 @@ export const LEAD_EXPORT_HEADERS: (keyof LeadExportRow)[] = [
   "role",
   "interests",
   "note",
+  "company",
+  "website",
   "organization",
   "city",
   "nycPlusInterest",
@@ -59,6 +63,8 @@ export const LEAD_EXPORT_HEADER_LABELS: Record<keyof LeadExportRow, string> = {
   role: "Role",
   interests: "Interests",
   note: "Note",
+  company: "Company",
+  website: "Website",
   organization: "Organization",
   city: "City",
   nycPlusInterest: "NYC Plus Interest",
@@ -82,6 +88,8 @@ function emptyRow(): LeadExportRow {
     email: "",
     name: "",
     organization: "",
+    company: "",
+    website: "",
     city: "",
     nycPlusInterest: "",
     linkedin: "",
@@ -136,6 +144,8 @@ export function leadToExportRow(lead: Lead): LeadExportRow {
       row.email = lead.email;
       row.name = lead.name;
       row.linkedin = lead.linkedin;
+      row.company = lead.company;
+      row.website = lead.website;
       row.role = lead.role;
       row.interests = lead.interests.join("; ");
       row.note = lead.note ?? "";

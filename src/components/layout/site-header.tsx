@@ -12,7 +12,7 @@ export function SiteHeader() {
         </Link>
         <nav className="flex items-center gap-4 text-sm text-muted-foreground">
           <Link href="/#picks" className="hover:text-foreground">
-            Editor&apos;s picks
+            Picks
           </Link>
           <Link href="/#apply" className="hover:text-foreground">
             Apply

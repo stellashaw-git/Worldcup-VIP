@@ -5,7 +5,7 @@ export function SiteFooter() {
         <p className="text-xs font-medium uppercase tracking-[0.35em] text-primary">
           BLACKBOOK
         </p>
-        <p>World Cup Social Guide · New York</p>
+        <p>Curated gatherings · New York</p>
         <p className="text-xs leading-relaxed">
           Curated gatherings during World Cup 2026. We do not represent FIFA
           unless explicitly stated.
